@@ -17,11 +17,16 @@ See [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) for module boundaries and rul
 pnpm install
 ```
 
-Copy environment files to the **repo root** (used by API migrate scripts):
+Backend env lives in **`apps/api/`** (not the monorepo root):
 
-- `.env.development`
-- `.env.staging`
-- `.env.production`
+```bash
+cd apps/api
+cp .env.example .env.development
+# edit with Neon, Redis, OAuth, R2, etc.
+```
+
+Optional: `.env.staging`, `.env.production` in the same folder.  
+When you add the web app, use `apps/web/.env.example` separately.
 
 ## Development
 

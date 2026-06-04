@@ -13,9 +13,9 @@
     "lint": "eslint \"src/**/*.ts\" --fix",
     "format": "prettier --write \"src/**/*.ts\"",
     "test": "jest",
-    "migrate:generate": "dotenv -e ../../.env.${NODE_ENV} -- npx typeorm-ts-node-commonjs migration:generate -d src/shared/infrastructure/database/data-source.ts",
-    "migrate:up": "dotenv -e ../../.env.${NODE_ENV} -- npx typeorm-ts-node-commonjs migration:run -d src/shared/infrastructure/database/data-source.ts",
-    "migrate:down": "dotenv -e ../../.env.${NODE_ENV} -- npx typeorm-ts-node-commonjs migration:revert -d src/shared/infrastructure/database/data-source.ts"
+    "migrate:generate": "dotenv -e .env.${NODE_ENV} -- npx typeorm-ts-node-commonjs migration:generate -d src/shared/infrastructure/database/data-source.ts",
+    "migrate:up": "dotenv -e .env.${NODE_ENV} -- npx typeorm-ts-node-commonjs migration:run -d src/shared/infrastructure/database/data-source.ts",
+    "migrate:down": "dotenv -e .env.${NODE_ENV} -- npx typeorm-ts-node-commonjs migration:revert -d src/shared/infrastructure/database/data-source.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",

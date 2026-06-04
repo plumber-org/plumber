@@ -86,6 +86,14 @@ Background job classes live here (not a Nest bounded-context module). Wire to Bu
 
 `DatabaseModule` is `@Global()` — inject `TYPEORM` token from `database.provider.ts`.
 
+## Environment
+
+```bash
+cd apps/api && cp .env.example .env.development
+```
+
+Nest loads `.env.{NODE_ENV}` from **`apps/api/`**. **Wired:** `APP_*`, `DB_*`, `REDIS_*`, `OTHER_SERVICE_URL`. **Template only (modules TBD):** `OAUTH_*`, `JWT_*`, `R2_*`, payments, `BULL_*`, SMTP, `CORS_ORIGIN`.
+
 ## Naming conventions
 
 | Target | Convention | Example |
