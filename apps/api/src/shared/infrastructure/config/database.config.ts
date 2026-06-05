@@ -1,10 +1,24 @@
+import { ENTITY_PATTERNS, MIGRATION_PATTERNS, MIGRATIONS_TABLE_NAME } from "../database/typeorm.config";
+import { buildRedisOptions } from "./redis.config";
+
 export default () => ({
     postgres: {
+        type: 'postgres' as const,
         host: process.env.DB_HOST || 'localhost',
-        port: (process.env.DB_PORT || 5432) as number,
+        port: Number(process.env.DB_PORT) || 5432,
         username: process.env.DB_USERNAME || 'postgres',
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
         synchronize: process.env.DB_SYNCHRONIZE === 'true',
+        ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
+        entities: ENTITY_PATTERNS,
+        migrations: MIGRATION_PATTERNS,
+        migrationsTableName: MIGRATIONS_TABLE_NAME,
+        cache: {
+            type: 'ioredis' as const,
+            options: buildRedisOptions(),
+            duration: 30_000,
+        },
     },
 });
+

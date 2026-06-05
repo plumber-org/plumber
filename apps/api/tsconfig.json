@@ -4,11 +4,10 @@
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
-      "@api/*": ["src/*"],
-      "@api/typeorm.config": ["typeorm.config.ts"]
+      "@api/*": ["src/*"]
     },
     "allowJs": true
   },
-  "include": ["src/**/*", "typeorm.config.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "**/*spec.ts"]
 }
