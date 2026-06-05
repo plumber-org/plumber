@@ -6,11 +6,13 @@ import {
 import AppConfig from './app.config';
 import DatabaseConfig from './database.config';
 import RedisConfig from './redis.config';
+import MicroserviceConfig from './microservice.config';
 
 const config = {
     app: AppConfig,
     database: DatabaseConfig,
     redis: RedisConfig,
+    microService: MicroserviceConfig,
 };
 
 const configModule = Object.entries(config).map(([name, valueFn]) => {

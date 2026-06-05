@@ -6,10 +6,12 @@ node_modules
 dist
 .turbo
 
-# env
+# env — per app (only .env.example is committed)
 .env
 .env.*
-!.env.example
+**/.env
+**/.env.*
+!**/.env.example
 
 # logs
 logs

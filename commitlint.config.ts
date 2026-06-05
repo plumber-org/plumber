@@ -6,7 +6,7 @@ module.exports = {
         'type-enum': [
             RuleConfigSeverity.Error,
             'always',
-            ['feature', 'fix', 'improve'],
+            ['feature', 'fix', 'improve', 'refactor', 'bugfix', 'hotfix'],
         ],
     },
 };

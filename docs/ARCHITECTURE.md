@@ -28,3 +28,10 @@ Modular monolith monorepo for the file processing pipeline.
 | billing | Razorpay, Stripe |
 
 Legacy article CRUD remains under `modules/pipeline/_article_legacy/` until migrated into pipeline layers.
+
+## Environment variables
+
+- **API:** `apps/api/.env.example` (committed) → copy to `.env.development` | `.env.staging` | `.env.production` (gitignored).
+- **Web (later):** `apps/web/.env*` — separate from the API.
+- Nest and TypeORM CLI both read `.env.{NODE_ENV}` from **`apps/api/`**.
+- Sections in `.env.example` map to bounded contexts (identity/OAuth, storage/R2, billing, jobs/Redis, etc.).

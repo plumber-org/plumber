@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { RedisService } from './service/redis.service';
 import * as Redis from 'ioredis';
+
 @Module({
     imports: [],
     providers: [
@@ -9,11 +10,13 @@ import * as Redis from 'ioredis';
             provide: 'REDIS_CLIENT',
             inject: [ConfigService],
             useFactory: (configService: ConfigService) => {
+                const redisConfig = configService.get('redis');
                 return new Redis.Redis({
-                    host: configService.get('redis.host'),
-                    port: configService.get('redis.port'),
-                    // username: configService.get('redis.username'),
-                    // password: configService.get('redis.password'),
+                    host: redisConfig.host,
+                    port: redisConfig.port,
+                    ...(redisConfig.username && { username: redisConfig.username }),
+                    ...(redisConfig.password && { password: redisConfig.password }),
+                    ...(redisConfig.tls && { tls: {} }),
                 });
             },
         },
