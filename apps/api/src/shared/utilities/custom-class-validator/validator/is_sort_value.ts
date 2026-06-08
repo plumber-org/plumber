@@ -1,8 +1,4 @@
-import {
-    ValidationArguments,
-    ValidationOptions,
-    registerDecorator,
-} from 'class-validator';
+import { ValidationArguments, ValidationOptions, registerDecorator } from 'class-validator';
 
 function IsSortValue<TKeys extends string = string>(
     value?: TKeys[],
@@ -16,10 +12,7 @@ function IsSortValue<TKeys extends string = string>(
             constraints: value ?? [],
             options: validationOptions,
             validator: {
-                validate: (
-                    sortValues: SortEntity,
-                    args: ValidationArguments,
-                ) => {
+                validate: (sortValues: SortEntity, args: ValidationArguments) => {
                     // Regular expression pattern to match values in the format "word:ASC" or "word:DESC" case-insensitively
                     let isValid = true;
                     const pattern = /^(\w+:(ASC|DESC))(,\w+:(ASC|DESC))*$/;
@@ -27,11 +20,7 @@ function IsSortValue<TKeys extends string = string>(
 
                     if (args.constraints?.length && isValid) {
                         sortValues.split(',').forEach((sortValue) => {
-                            isValid =
-                                isValid &&
-                                args.constraints.includes(
-                                    sortValue.split(':')[0],
-                                );
+                            isValid = isValid && args.constraints.includes(sortValue.split(':')[0]);
                         });
                     }
 
@@ -44,10 +33,7 @@ function IsSortValue<TKeys extends string = string>(
                             .map((sortValue) => {
                                 return sortValue.split(':')[0];
                             })
-                            .filter(
-                                (sortValue) =>
-                                    !args.constraints.includes(sortValue),
-                            );
+                            .filter((sortValue) => !args.constraints.includes(sortValue));
 
                         if (invalidEntry.length) {
                             return `Invalid SortBy: Sort value can not be ${invalidEntry}. Valid entry are ${args.constraints}`;

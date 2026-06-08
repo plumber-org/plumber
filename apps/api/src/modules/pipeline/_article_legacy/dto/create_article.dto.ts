@@ -1,11 +1,4 @@
-import {
-    IsBoolean,
-    IsDate,
-    IsEnum,
-    IsNotEmpty,
-    IsNumber,
-    IsString,
-} from 'class-validator';
+import { IsBoolean, IsDate, IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { ARTICLE_STATUS } from '../constants/article.constant';
 import { Transform } from 'class-transformer';
 

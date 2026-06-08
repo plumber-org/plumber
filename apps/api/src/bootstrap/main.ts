@@ -43,9 +43,7 @@ async function bootstrap() {
                                     ...value,
                                     {
                                         field: appendFieldName + error.property,
-                                        error: Object.values(
-                                            error.constraints,
-                                        ).join(', '),
+                                        error: Object.values(error.constraints).join(', '),
                                     },
                                 ];
                             }

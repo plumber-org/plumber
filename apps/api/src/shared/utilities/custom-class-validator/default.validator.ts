@@ -1,11 +1,4 @@
-import {
-    isNumber,
-    isString,
-    isUUID,
-    isDateString,
-    isEnum,
-    isNotEmpty,
-} from 'class-validator';
+import { isNumber, isString, isUUID, isDateString, isEnum, isNotEmpty } from 'class-validator';
 
 export const Validators = {
     isUUID,

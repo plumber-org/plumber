@@ -16,9 +16,7 @@ export class OtherServiceGatewayService {
         @Inject(WINSTON_MODULE_PROVIDER)
         private readonly logger: Logger,
     ) {
-        this.otherServiceUrl = this.configService.get(
-            'microService.otherServiceUrl',
-        )!;
+        this.otherServiceUrl = this.configService.get('microService.otherServiceUrl')!;
         this.axiosClient = axios.create({
             baseURL: `${this.otherServiceUrl}`,
             headers: {
@@ -34,10 +32,7 @@ export class OtherServiceGatewayService {
      * @returns
      */
     public async getHelperData(helper: IOtherServiceHelper) {
-        this.logger.info(
-            'OtherServiceGatewayService :: API call for getting data ::',
-            { helper },
-        );
+        this.logger.info('OtherServiceGatewayService :: API call for getting data ::', { helper });
         try {
             const result = await this.axiosClient.post(
                 '/route/for/helper/data',

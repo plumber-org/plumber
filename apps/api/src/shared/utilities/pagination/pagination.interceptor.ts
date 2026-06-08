@@ -1,9 +1,4 @@
-import {
-    CallHandler,
-    ExecutionContext,
-    Injectable,
-    NestInterceptor,
-} from '@nestjs/common';
+import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
 import { map, Observable } from 'rxjs';
 import { PaginationService } from './pagination.service';
 import { HttpArgumentsHost } from '@nestjs/common/interfaces';
@@ -20,8 +15,7 @@ export class PaginationInterceptor implements NestInterceptor {
         if (context.getType() === 'http') {
             return next.handle().pipe(
                 map(async (responseData: Promise<Record<string, any>>) => {
-                    const { count, statusCode, message, ...data } =
-                        await responseData;
+                    const { count, statusCode, message, ...data } = await responseData;
 
                     const ctx: HttpArgumentsHost = context.switchToHttp();
                     const request: Request = ctx.getRequest();
@@ -30,10 +24,7 @@ export class PaginationInterceptor implements NestInterceptor {
                         statusCode,
                         message,
                         data: data.data ?? data.rows ?? data,
-                        metadata: this.paginationService.getPaginationMetadata(
-                            request,
-                            count,
-                        ),
+                        metadata: this.paginationService.getPaginationMetadata(request, count),
                     };
                 }),
             );

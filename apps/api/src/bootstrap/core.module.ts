@@ -19,8 +19,7 @@ import { DebuggerService } from '@api/shared/infrastructure/observability/servic
         WinstonModule.forRootAsync({
             inject: [DebuggerService],
             imports: [DebuggerModule],
-            useFactory: (debuggerService: DebuggerService) =>
-                debuggerService.createLogger(),
+            useFactory: (debuggerService: DebuggerService) => debuggerService.createLogger(),
         }),
 
         // Error Module

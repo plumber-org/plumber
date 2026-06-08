@@ -1,10 +1,6 @@
 import { DataSource } from 'typeorm';
 
-import {
-    ENTITY_PATTERNS,
-    MIGRATION_PATTERNS,
-    MIGRATIONS_TABLE_NAME,
-} from './typeorm.config';
+import { ENTITY_PATTERNS, MIGRATION_PATTERNS, MIGRATIONS_TABLE_NAME } from './typeorm.config';
 import { buildRedisOptions } from '../config/redis.config';
 
 /**

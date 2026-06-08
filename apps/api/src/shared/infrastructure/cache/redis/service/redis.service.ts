@@ -12,11 +12,7 @@ export class RedisService {
      * @param ttlInSeconds - Optional expiration time in seconds. If not provided or <= 0, the key will persist indefinitely.
      * @returns A promise that resolves to `true` when the operation succeeds.
      */
-    async setValue<T>(
-        key: string,
-        value: T,
-        ttlInSeconds?: number,
-    ): Promise<boolean> {
+    async setValue<T>(key: string, value: T, ttlInSeconds?: number): Promise<boolean> {
         const valueStr = JSON.stringify(value);
 
         if (ttlInSeconds !== undefined && ttlInSeconds > 0)

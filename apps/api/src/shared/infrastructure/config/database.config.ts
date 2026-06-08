@@ -1,5 +1,9 @@
-import { ENTITY_PATTERNS, MIGRATION_PATTERNS, MIGRATIONS_TABLE_NAME } from "../database/typeorm.config";
-import { buildRedisOptions } from "./redis.config";
+import {
+    ENTITY_PATTERNS,
+    MIGRATION_PATTERNS,
+    MIGRATIONS_TABLE_NAME,
+} from '../database/typeorm.config';
+import { buildRedisOptions } from './redis.config';
 
 export default () => ({
     postgres: {
@@ -21,4 +25,3 @@ export default () => ({
         },
     },
 });
-
