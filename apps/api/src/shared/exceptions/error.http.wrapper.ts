@@ -25,9 +25,7 @@ export class HttpExceptionWrapper extends HttpException {
             if (code === PG_FOREIGN_KEY_VIOLATION) {
                 const constraint: string = (errors as any).constraint ?? '';
                 const table: string = (errors as any).table ?? '';
-                const keyName = constraint
-                    .replace(`${table}_`, '')
-                    .replace('_fkey', '');
+                const keyName = constraint.replace(`${table}_`, '').replace('_fkey', '');
 
                 resultErrors = [
                     {
@@ -42,9 +40,7 @@ export class HttpExceptionWrapper extends HttpException {
                 mainError = DEFAULT_ERROR.SEQUELIZE_VALIDATION;
             } else if (code === PG_UNIQUE_VIOLATION) {
                 const detail: string = (errors as any).detail ?? '';
-                resultErrors = [
-                    { field: 'unique', error: detail || 'Duplicate entry' },
-                ];
+                resultErrors = [{ field: 'unique', error: detail || 'Duplicate entry' }];
                 mainError = DEFAULT_ERROR.SEQUELIZE_VALIDATION;
             }
         }
@@ -52,10 +48,7 @@ export class HttpExceptionWrapper extends HttpException {
         const defaultError: ERROR = mainError ?? DEFAULT_ERROR.DEFAULT;
         const errorInfo = errorConfig[defaultError];
 
-        super(
-            { ...errorInfo, errors: resultErrors ?? errors, logs },
-            errorInfo.statusCode,
-        );
+        super({ ...errorInfo, errors: resultErrors ?? errors, logs }, errorInfo.statusCode);
     }
 }
 

@@ -1,11 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
-    DeepPartial,
-    FindManyOptions,
-    FindOptionsWhere,
-    ObjectLiteral,
-    Repository,
-} from 'typeorm';
+import { DeepPartial, FindManyOptions, FindOptionsWhere, ObjectLiteral, Repository } from 'typeorm';
 import { DEFAULT_PAGE, DEFAULT_PER_PAGE } from '@api/shared/constants/database';
 import { IFindOneOption, IModelOption } from './base_repository.interface';
 
@@ -17,10 +11,7 @@ export class BaseRepository<T extends ObjectLiteral> {
         return this.repository.exists({ where });
     }
 
-    async findOne(
-        where: FindOptionsWhere<T>,
-        options?: IFindOneOption<T>,
-    ): Promise<T | null> {
+    async findOne(where: FindOptionsWhere<T>, options?: IFindOneOption<T>): Promise<T | null> {
         return this.repository.findOne({
             where,
             order: options?.order,
@@ -63,10 +54,7 @@ export class BaseRepository<T extends ObjectLiteral> {
         return this.repository.save(entity);
     }
 
-    async update(
-        where: FindOptionsWhere<T>,
-        data: DeepPartial<T>,
-    ): Promise<void> {
+    async update(where: FindOptionsWhere<T>, data: DeepPartial<T>): Promise<void> {
         await this.repository.update(where, data as any);
     }
 
@@ -88,13 +76,7 @@ export class BaseRepository<T extends ObjectLiteral> {
         return this.repository.createQueryBuilder(alias);
     }
 
-    getPaginationParams(
-        page = DEFAULT_PAGE,
-        perPage = DEFAULT_PER_PAGE,
-        isPagination = true,
-    ) {
-        return isPagination
-            ? { take: perPage, skip: (page - 1) * perPage }
-            : {};
+    getPaginationParams(page = DEFAULT_PAGE, perPage = DEFAULT_PER_PAGE, isPagination = true) {
+        return isPagination ? { take: perPage, skip: (page - 1) * perPage } : {};
     }
 }

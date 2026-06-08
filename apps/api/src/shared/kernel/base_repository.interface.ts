@@ -1,9 +1,6 @@
 import { FindManyOptions, FindOneOptions, ObjectLiteral } from 'typeorm';
 
-export type CacheOption =
-    | boolean
-    | number
-    | { id: string; milliseconds: number };
+export type CacheOption = boolean | number | { id: string; milliseconds: number };
 
 export type IModelOption<T extends ObjectLiteral = ObjectLiteral> = {
     page?: number;

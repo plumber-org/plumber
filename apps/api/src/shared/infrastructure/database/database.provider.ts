@@ -1,7 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
-import { DataSource, DataSourceOptions } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { DatabaseService } from './database.service';
 
 export const TYPEORM = 'TYPEORM';
@@ -15,9 +15,7 @@ export const databaseProvider = {
         databaseService: DatabaseService,
     ) => {
         const postgresConfig = configService.get('database.postgres');
-        const dataSource = new DataSource(
-            postgresConfig
-        );
+        const dataSource = new DataSource(postgresConfig);
 
         await dataSource.initialize();
 
