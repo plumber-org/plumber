@@ -1,0 +1,10 @@
+# NestJS build output
+dist/
+*.tsbuildinfo
+
+# Test coverage
+coverage/
+
+# Uploads / temp files
+uploads/
+tmp/

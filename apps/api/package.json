@@ -2,7 +2,7 @@
   "name": "@repo/api",
   "version": "0.0.1",
   "private": true,
-  "description": "File processing pipeline API (NestJS modular monolith)",
+  "description": "Plumber API (NestJS modular monolith)",
   "scripts": {
     "build": "nest build && tsc-alias -p tsconfig.build.json",
     "start": "nest start",
@@ -60,7 +60,11 @@
     "typescript": "^5.1.3"
   },
   "jest": {
-    "moduleFileExtensions": ["js", "json", "ts"],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
     "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
@@ -69,7 +73,9 @@
     "moduleNameMapper": {
       "^@api/(.*)$": "<rootDir>/$1"
     },
-    "collectCoverageFrom": ["**/*.(t|j)s"],
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   }

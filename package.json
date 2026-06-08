@@ -1,16 +1,22 @@
 {
-  "name": "file-processing-pipeline",
+  "name": "plumber",
   "version": "0.0.1",
   "private": true,
-  "description": "File processing pipeline — modular monolith monorepo",
+  "description": "A file processing pipeline — modular monolith monorepo",
   "scripts": {
+    "dev": "turbo run start:dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
-    "format": "prettier --write \"apps/**/*.ts\" \"packages/**/*.ts\"",
-    "start:dev": "pnpm --filter @repo/api run start:dev",
-    "start:stage": "pnpm --filter @repo/api run start:stage",
-    "start:prod": "pnpm --filter @repo/api run start:prod",
+    "format": "prettier --write \"apps/**/*.{ts,tsx}\" \"packages/**/*.ts\"",
     "test": "turbo run test",
+    "api:dev": "pnpm --filter @repo/api run start:dev",
+    "api:stage": "pnpm --filter @repo/api run start:stage",
+    "api:prod": "pnpm --filter @repo/api run start:prod",
+    "web:dev": "pnpm --filter @repo/web run dev",
+    "web:build": "pnpm --filter @repo/web run build",
+    "web:lint": "pnpm --filter @repo/web run lint",
+    "web:test": "pnpm --filter @repo/web run test",
+    "web:type-check": "pnpm --filter @repo/web run type-check",
     "migrate:generate": "pnpm --filter @repo/api run migrate:generate",
     "migrate:up": "pnpm --filter @repo/api run migrate:up",
     "migrate:down": "pnpm --filter @repo/api run migrate:down",
@@ -23,11 +29,11 @@
     "@typescript-eslint/parser": "^7.1.1",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-unused-imports": "^4.1.4",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.0",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.0",
     "sonarqube-scanner": "^3.5.0",
     "turbo": "^2.5.4",
     "typescript": "^5.1.3"
@@ -35,5 +41,14 @@
   "packageManager": "pnpm@9.15.0",
   "engines": {
     "node": ">=20"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{json,yml,yaml}": [
+      "prettier --write"
+    ]
   }
 }

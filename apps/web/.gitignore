@@ -1,0 +1,9 @@
+# Next.js
+.next/
+out/
+
+# Test coverage
+coverage/
+
+# Type-check cache
+*.tsbuildinfo
