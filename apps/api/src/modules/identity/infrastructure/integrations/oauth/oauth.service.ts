@@ -9,18 +9,12 @@ import { IOAuthProfile, IOAuthTokenSet } from './oauth.types';
 export class OAuthService {
     private readonly logger = new Logger(OAuthService.name);
 
-    async exchangeCodeForTokens(
-        _provider: string,
-        _code: string,
-    ): Promise<IOAuthTokenSet | null> {
+    async exchangeCodeForTokens(_provider: string, _code: string): Promise<IOAuthTokenSet | null> {
         this.logger.debug('OAuth token exchange not configured');
         return null;
     }
 
-    async fetchProfile(
-        _provider: string,
-        _accessToken: string,
-    ): Promise<IOAuthProfile | null> {
+    async fetchProfile(_provider: string, _accessToken: string): Promise<IOAuthProfile | null> {
         this.logger.debug('OAuth profile fetch not configured');
         return null;
     }

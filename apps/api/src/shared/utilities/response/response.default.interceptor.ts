@@ -12,13 +12,9 @@ import { HttpArgumentsHost } from '@nestjs/common/interfaces';
 import { Response } from 'express';
 import { responseInfo } from '@api/shared/constants/response';
 
-export function ResponseDefaultInterceptor(
-    messagePath: string,
-): Type<NestInterceptor> {
+export function ResponseDefaultInterceptor(messagePath: string): Type<NestInterceptor> {
     @Injectable()
-    class MixinResponseDefaultInterceptor
-        implements NestInterceptor<Promise<any>>
-    {
+    class MixinResponseDefaultInterceptor implements NestInterceptor<Promise<any>> {
         async intercept(
             context: ExecutionContext,
             next: CallHandler,
@@ -31,32 +27,24 @@ export function ResponseDefaultInterceptor(
                         const statusCode = response.statusCode;
 
                         // Getting response information using response name
-                        const responseStatusMessage =
-                            responseInfo?.[messagePath];
+                        const responseStatusMessage = responseInfo?.[messagePath];
 
                         // Getting response messages
-                        let responseMessage =
-                            responseStatusMessage?.message ?? messagePath;
+                        let responseMessage = responseStatusMessage?.message ?? messagePath;
 
                         // Getting response status code
-                        let responseStatusCode =
-                            responseStatusMessage?.statusCode ?? statusCode;
+                        let responseStatusCode = responseStatusMessage?.statusCode ?? statusCode;
 
                         let customMetadata;
                         let customData;
 
-                        if (
-                            typeof responseData == 'string' ||
-                            Array.isArray(responseData)
-                        ) {
+                        if (typeof responseData == 'string' || Array.isArray(responseData)) {
                             customData = responseData;
                         } else if (typeof responseData == 'object') {
-                            const { metadata, statusCode, message, ...data } =
-                                await responseData;
+                            const { metadata, statusCode, message, ...data } = await responseData;
 
                             // Overriding response code if present
-                            responseStatusCode =
-                                statusCode ?? responseStatusCode;
+                            responseStatusCode = statusCode ?? responseStatusCode;
 
                             // Overriding response message if present
                             responseMessage = message ?? responseMessage;

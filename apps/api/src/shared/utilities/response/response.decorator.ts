@@ -18,7 +18,5 @@ import { ResponseDefaultInterceptor } from './response.default.interceptor';
  * @returns
  */
 export function ResponseCustom(messagePath: string) {
-    return applyDecorators(
-        UseInterceptors(ResponseDefaultInterceptor(messagePath)),
-    );
+    return applyDecorators(UseInterceptors(ResponseDefaultInterceptor(messagePath)));
 }

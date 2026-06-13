@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+local_branch=$(git rev-parse --abbrev-ref HEAD)
+
+valid_branch_regex="^(main|dev|staging)$|^(feature|fix|hotfix|refactor|chore|release)\/[a-z0-9.-]+$"
+
+if ! echo "$local_branch" | grep -Eq "$valid_branch_regex"; then
+  echo "Error: Invalid branch name '$local_branch'."
+  echo "Branch name must match the required regex pattern:"
+  echo "  $valid_branch_regex"
+  echo ""
+  echo "Allowed branches:"
+  echo "  - main, dev, staging"
+  echo "  - feature/*, fix/*, hotfix/*, refactor/*, chore/*, release/* (using lowercase alphanumeric, dots, and hyphens)"
+  echo ""
+  echo "Please rename your branch using: git branch -m <new-branch-name>"
+  exit 1
+fi

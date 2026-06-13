@@ -31,8 +31,7 @@ export class HelperService {
         const currValueA = a[valueKey];
         const currValueB = b[valueKey];
 
-        if (currValueA === currValueB)
-            return this.sortNestedHelper(a, b, value, i + 1);
+        if (currValueA === currValueB) return this.sortNestedHelper(a, b, value, i + 1);
 
         const comparison =
             typeof currValueA === 'string' && typeof currValueB === 'string'
@@ -42,17 +41,11 @@ export class HelperService {
         return valueOrder === SORT_ORDER.ASC ? comparison : -comparison;
     }
 
-    async mapAsyncParallel<T, R>(
-        tasks: T[],
-        taskFn: (task: T) => Promise<R>,
-    ): Promise<R[]> {
+    async mapAsyncParallel<T, R>(tasks: T[], taskFn: (task: T) => Promise<R>): Promise<R[]> {
         return Promise.all(tasks.map((task) => taskFn(task)));
     }
 
-    async mapAsyncSequential<T, R>(
-        tasks: T[],
-        taskFn: (task: T) => Promise<R>,
-    ): Promise<R[]> {
+    async mapAsyncSequential<T, R>(tasks: T[], taskFn: (task: T) => Promise<R>): Promise<R[]> {
         const results: R[] = [];
         for (const task of tasks) {
             try {
@@ -88,9 +81,7 @@ export class HelperService {
             hour12: false,
         });
 
-        const finalFormattedDate = formattedDate
-            .replace(',', '')
-            .replace(/\//g, '-');
+        const finalFormattedDate = formattedDate.replace(',', '').replace(/\//g, '-');
 
         return finalFormattedDate;
     }

@@ -1,12 +1,12 @@
-# CLAUDE.md
+# AGENTS.md
 
-Guidance for working in this **modular monolith monorepo** (pnpm + Turbo).
+Guidance for AI agents working in this **modular monolith monorepo** (pnpm + Turbo).
 
 ## Repository layout
 
 ```
 apps/api/          NestJS API (@repo/api)
-apps/web/          Next.js scaffold (@repo/web)
+apps/web/          Next.js frontend (@repo/web)
 packages/contracts Shared API contracts for web/clients
 packages/types     Shared pure types
 packages/utils     Shared utilities
@@ -106,4 +106,12 @@ Nest loads `.env.{NODE_ENV}` from **`apps/api/`**. **Wired:** `APP_*`, `DB_*`, `
 
 ## Commit convention
 
-Types: `feature`, `fix`, `improve` (commitlint).
+Types: `feature`, `fix`, `improve`, `refactor`, `bugfix`, `hotfix` (commitlint enforced via Husky).
+
+## Code rules for agents
+
+- Never import across bounded contexts except through `modules/<name>/public/`.
+- New bounded-context modules must follow the `public/domain/application/infrastructure/presentation` layout.
+- Do not add error handling for impossible scenarios — trust NestJS pipes and TypeORM guarantees.
+- Default to no comments; add one only when the WHY is non-obvious.
+- All new files follow the naming conventions table above.

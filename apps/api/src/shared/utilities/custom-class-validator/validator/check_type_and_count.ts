@@ -1,13 +1,6 @@
-import {
-    registerDecorator,
-    ValidationOptions,
-    ValidationArguments,
-} from 'class-validator';
+import { registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator';
 
-export function CheckTypeAndCount(
-    property?: string,
-    validationOptions?: ValidationOptions,
-) {
+export function CheckTypeAndCount(property?: string, validationOptions?: ValidationOptions) {
     return function (object: any, propertyName: string) {
         registerDecorator({
             name: 'CheckTypeAndCount',
@@ -18,16 +11,12 @@ export function CheckTypeAndCount(
             validator: {
                 validate(value: any, args: ValidationArguments) {
                     const obj: any = args.object as any;
-                    if (
-                        value == Object.keys(obj)[1] &&
-                        Object.keys(obj).length == 2
-                    ) {
+                    if (value == Object.keys(obj)[1] && Object.keys(obj).length == 2) {
                         return true;
                     }
                     return false;
                 },
                 defaultMessage(value: any) {
-                    console.log('message', value);
                     return `please provide the ${value.object['type']} key or either you pass more than 2 properties`;
                 },
             },

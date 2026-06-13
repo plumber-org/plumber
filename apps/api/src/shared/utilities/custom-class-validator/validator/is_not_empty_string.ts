@@ -1,13 +1,6 @@
-import {
-    registerDecorator,
-    ValidationOptions,
-    ValidationArguments,
-} from 'class-validator';
+import { registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator';
 
-function IsNonEmptyString(
-    minLength = 1,
-    validationOptions?: ValidationOptions,
-) {
+function IsNonEmptyString(minLength = 1, validationOptions?: ValidationOptions) {
     return (object: object, propertyName: string) => {
         registerDecorator({
             name: 'isNonEmptyString',
@@ -24,10 +17,7 @@ function IsNonEmptyString(
                     );
                 },
                 defaultMessage: (args: ValidationArguments) => {
-                    if (
-                        typeof args.value !== 'string' ||
-                        args.value.trim() === ''
-                    ) {
+                    if (typeof args.value !== 'string' || args.value.trim() === '') {
                         return `${args.property} must be a non empty string`;
                     }
 
